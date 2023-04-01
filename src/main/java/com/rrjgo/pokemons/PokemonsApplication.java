@@ -13,5 +13,19 @@ public class PokemonsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PokemonsApplication.class, args);
 	}
-	
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("*")
+						.allowedMethods("*")
+						.allowedHeaders("*")
+						.allowCredentials(false).maxAge(3600);
+			}
+		};
+	}
+
 }
