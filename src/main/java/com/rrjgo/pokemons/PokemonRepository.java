@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface PokemonRepository extends MongoRepository<Pokemon, ObjectId> {
 
     Optional<Pokemon> findById(Integer id);
+
 }
