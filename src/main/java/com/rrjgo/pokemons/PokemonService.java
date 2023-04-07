@@ -22,7 +22,7 @@ public class PokemonService {
     }
 
 
-    public Integer addPokemon(Pokemon pokemon) {
-        return pokemonRepository.save(pokemon).getId();
+    public String addPokemon(Pokemon pokemon) {
+        return pokemonRepository.save(pokemon).getId().toString();
     }
 }

@@ -28,7 +28,7 @@ public class PokemonController {
 
 
     @PostMapping("/add")
-    public Integer addPokemon( @RequestBody Pokemon pokemon) {
-        return pokemonService.addPokemon(pokemon);
+    public ResponseEntity<String> addPokemon( @RequestBody Pokemon pokemon) {
+        return new ResponseEntity<>(pokemonService.addPokemon(pokemon), HttpStatus.CREATED);
     }
 }
