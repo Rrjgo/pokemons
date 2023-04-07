@@ -25,4 +25,8 @@ public class PokemonService {
     public String addPokemon(Pokemon pokemon) {
         return pokemonRepository.save(pokemon).getId().toString();
     }
+
+    public List<Pokemon> getPokemonByName(String name) {
+        return pokemonRepository.findByNameContainingIgnoreCase(name);
+    }
 }
