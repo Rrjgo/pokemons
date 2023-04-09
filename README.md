@@ -13,6 +13,7 @@ This is a sample Java / Spring Boot / MongoDB application that serves as a Tech 
   - [Running the Application](#running-the-application)
   - [API Endpoints](#api-endpoints)
   - [Database](#database)
+  - [Spring Boot](#spring-boot)
 
 ## Overview
 This tech demo implements a simple Fetch and Post API using Java, Spring Boot, and MongoDB. 
@@ -52,4 +53,21 @@ The application exposes the following RESTful API endpoints:
   ```
   The [resource](src/main/resources/static/images/) folder contains the source file where the `imageUrl` will be navigated to and then pass the image to the frontend.
  
-
+## Spring Boot
+This application showcase a basic Spring Boot business layer model, including following parts:
+ - [Collection](src/main/java/com/rrjgo/pokemons/Pokemon.java): Stores Object data schema, similar to the `models`. Using annotation:
+   - `@Document(collection = "<database-name>")`: This has to match with the MongoDB database name.
+   - `@Data`/`@AllArgsConstructor` / `@NoArgsConstructor`: Auto generated constructor to create corresponding data.
+ - [Controller](src/main/java/com/rrjgo/pokemons/PokemonController.java): Stores all the exposed endpoint, and mapping to corresponding Service Layer method, similar to the `routes`. Using annotation:
+   - `@RestController`: Define the controller class
+   - `@RequestMapping("<path>")`: Define request path to the controller
+   - `@GetMapping("<path>")`/ `@PostMapping("<path>")`: Define the endpoint of individual function
+     - `@PathVariable` and `@RequestParam` are defined in the parameter of the method
+   - `@Autowired`: The spring container will take care of the dependency injection. when detecting this annotation, it will auto generate the corresponding instance. 
+ - [Service](src/main/java/com/rrjgo/pokemons/PokemonService.java): Where all the function is implemented, handle the request from the Controller Layer, similar to the `business`. Using annotation:
+   - `@Service`
+   - `@Autowired`: Same as described above, generate a Repository instance
+ - [Repository](src/main/java/com/rrjgo/pokemons/PokemonRepository.java): This is the data access layer, interact with the data base. It extends the `MongoRepository` Class. Using annotation:
+   - `@Repository`
+ - [Application](src/main/java/com/rrjgo/pokemons/PokemonsApplication.java): The entry point of the application. Also includes a cors config to overcome the cors error as the frontend and backend were developed under different directory. Using annotation:
+   - `@SpringBootApplication`
